@@ -47,7 +47,15 @@ public class ResortAPITests {
 
     @Test
     public void invalidHeaders(){
+        String createPayload = "{\"name\": \"Snowy Hills\",\"townInvalid\": \"Wiarton\"}";
 
+        given()
+                .when()
+                .contentType(ContentType.TEXT)
+                .body(createPayload)
+                .post("http://localhost:8080/api/v2/resorts")
+                .then()
+                .statusCode(415);
     }
 
     @Test
